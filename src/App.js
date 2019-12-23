@@ -1,24 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useSelector } from 'react-redux'
+import UserInterface from './userInterface';
+import Results from './results';
+import Config from './config';
 
 function App() {
+  const config = useSelector(state => state.config);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      { config === false ?
+        <div>
+          <UserInterface></UserInterface>
+          <Results></Results>
+        </div>
+        :
+        <div>
+          <Config></Config>
+        </div>
+      }
     </div>
   );
 }
